@@ -1,0 +1,182 @@
+<html>
+<head>
+	<title>Calendario</title>
+	<link rel='stylesheet' href='css/style.css' />
+	<link rel='stylesheet' href='css/fullcalendar.css' />
+	<script src='js/jquery.min.js'></script>
+	<script src='js/moment.min.js'></script>
+	<script src='calendar/fullcalendar.js'></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+	<header>
+		<div id="menu"></div>
+		<div id="logout">[ Log Out ]</div>
+	</header>
+	<article id="panels">
+		<div id="usuario">[ nombre de usuario ]</div>
+		<div id="logoCliente">
+			<img src="img/logocliente.png">
+		</div>
+		<div id="paneles">
+			<div class="tab" id="progress">
+				<input id="radio1" type="radio" name="acordeon" value="progress"/>
+				<label for="radio1">Progress Report<i class="fa fa-download"></i><i class="fa fa-filter"></i></label>
+				<div class="contenido">
+					<ul>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="tab" id="demographics">
+				<input id="radio2" type="radio" name="acordeon" value="demographics"/>
+				<label for="radio2">Demographics<i class="fa fa-download"></i><i class="fa fa-filter"></i></label>
+				<div class="contenido">
+					<ul>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="tab" id="ideas">
+				<input id="radio3" type="radio" name="acordeon" value="beehive"/>
+				<label for="radio3">Beehive of Ideas<i class="fa fa-download"></i><i class="fa fa-filter"></i></label>
+				<div class="contenido">
+					<ul>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+						<li><span>July</span> <span>04/07/2015</span><span>Carolina Collazos</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="tab" id="account">
+				<input id="radio4" type="radio" name="acordeon" value="account"/>
+				<label for="radio4">Account Info</label>
+				<div class="contenido">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore e</div>
+			</div>
+			<div class="tab" id="winner">
+				<input id="radio5" type="radio" name="acordeon" value="contest"/>
+				<label  for="radio5">Contest Picker</label>
+				<div class="contenido winner" >
+					<textarea class="texto"></textarea>
+					<button id="WinnerButton">Pick Winner</button>
+				</div>
+			</div>
+		</div>
+	</article>
+	<article id="calendario">
+		<div id="contenedor">
+			<div id="iconos"><i class="fa fa-download"></i><i class="fa fa-filter"></i></div>
+			<div id="calendar"></div>
+			<div id="agregar">
+				<div id="capa"></div>
+				<div id="taskCont">
+					<h2>NEW TASK</h2>
+					<div id="redes">
+						<ul>
+							<li><i class="fa fa-facebook"></i></li>
+							<li><i class="fa fa-twitter"></i></li>
+							<li><i class="fa fa-instagram"></i></li>
+							<li><i class="fa fa-linkedin"></i></li>
+							<li><i class="fa fa-pinterest"></i></li>
+							<li><i class="fa fa-youtube"></i></li>
+							<li><i class="fa fa-google-plus"></i></li>
+						</ul>
+					</div>
+					<div id="taskText"><textarea type="text"value="add task"></textarea></div>
+					<div id="taskDescription"><textarea type="text"value="add task"></textarea></div>
+					<div id="taskAuthor"><textarea type="text"value="add task"></textarea></div>
+					<div id="buttons">
+						<div class="taskButton" id="upload" style="float:left;"><i class="fa fa-upload"></i>   upload file</div>
+						<div class="taskButton" id="discard" style="float:right;">discard</div>
+						<div class="taskButton" id="save" style="float:right;">save</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+	
+</body>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#agregar").hide();
+   crearCalendario();
+});
+
+function crearCalendario(){
+	 $('#calendar').fullCalendar({
+		editable: true,
+		eventStartEditable:true,
+		events: [
+			{
+				title: 'Business Lunch',
+				start: '2015-09-23T13:00:00',
+				constraint: 'businessHours'
+			},
+			{
+				title: 'laaaaa',
+				start: '2015-09-23T13:00:00',
+				constraint: 'businessHours'
+			},
+			{
+				title: 'Meeting',
+				start: '2015-09-24T11:00:00',
+				constraint: 'availableForMeeting', // defined below
+				color: '#257e4a'
+			}
+		] ,
+		dragable:true,
+		fixedWeekCount :false,
+
+		
+	    eventClick: function(calEvent, jsEvent, view) {
+	        alert('Event: ' + calEvent.title);
+	    },
+	    dayMouseover: function( event, jsEvent, view ) {
+	    	console.log('roll over' +date);
+	    },
+	    dayMouseout: function( event, jsEvent, view ) {
+	    	console.log('roll out' +date);
+	    }
+    });
+
+
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var alto = $(window).width() / 2.4;
+    console.log('alto :'+parseInt(alto));   
+    $('#calendar').fullCalendar('option', 'height', alto);
+
+    var date = new Date();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+
+
+    $( ".fc-left" ).empty();
+   	$( ".fc-left" ).append('<h2 style="display: block; float: right">' + months[month] + '</h2><span style="display: block; float: right; clear: both; margin-top: -14px; position: relative;">'+year+'</span>');
+
+   	var fechaSelect;
+
+	$(".fc-day").click(function(){
+		fechaSelect = $(this).context.dataset.date;
+		console.log("fechaSelect : ",fechaSelect);
+		console.log("fechaSelect : ",fechaSelect);
+		$("#agregar").show();
+	});
+
+	$("#discard").click(function(){
+		$("#agregar").hide();
+	});
+	$("#save").click(function(){
+		$("#agregar").hide();
+	});
+}
+
+</script>
+</html>
