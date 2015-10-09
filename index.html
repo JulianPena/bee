@@ -149,7 +149,15 @@ function crearCalendario(){
 
 	$(".fc-day").click(function(){
 		fechaSelect = $(this).context.dataset.date;
+
+		$("#taskText textarea").val("add task");
+		$("#taskDescription textarea").val("add description");
+		$("#taskAuthor textarea").val("author name");
 		$("#agregar").show();
+
+		$("#taskText textarea").click(function(){$("#taskText textarea").val("");})
+		$("#taskDescription textarea").click(function(){$("#taskDescription textarea").val("");})
+		$("#taskAuthor textarea").click(function(){$("#taskAuthor textarea").val("");})
 	});
 
 	$("#discard").click(function(){
