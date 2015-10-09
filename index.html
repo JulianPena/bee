@@ -90,9 +90,9 @@
 							<li><i class="fa fa-google-plus"></i></li>
 						</ul>
 					</div>
-					<div id="taskText"><textarea type="text"value="add task"></textarea></div>
-					<div id="taskDescription"><textarea type="text"value="add task"></textarea></div>
-					<div id="taskAuthor"><textarea type="text"value="add task"></textarea></div>
+					<div id="taskText"><textarea type="text" value="add task"></textarea></div>
+					<div id="taskDescription"><textarea type="text" value="add task"></textarea></div>
+					<div id="taskAuthor"><textarea type="text" value="add task"></textarea></div>
 					<div id="buttons">
 						<div class="taskButton" id="upload" style="float:left;"><i class="fa fa-upload"></i>   upload file</div>
 						<div class="taskButton" id="discard" style="float:right;">discard</div>
@@ -114,24 +114,6 @@ function crearCalendario(){
 	 $('#calendar').fullCalendar({
 		editable: true,
 		eventStartEditable:true,
-		events: [
-			{
-				title: 'Business Lunch',
-				start: '2015-09-23T13:00:00',
-				constraint: 'businessHours'
-			},
-			{
-				title: 'laaaaa',
-				start: '2015-09-23T13:00:00',
-				constraint: 'businessHours'
-			},
-			{
-				title: 'Meeting',
-				start: '2015-09-24T11:00:00',
-				constraint: 'availableForMeeting', // defined below
-				color: '#257e4a'
-			}
-		] ,
 		dragable:true,
 		fixedWeekCount :false,
 
@@ -146,11 +128,12 @@ function crearCalendario(){
 	    	console.log('roll out' +date);
 	    }
     });
-
+	var Events=[];
 
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
     var alto = $(window).width() / 2.4;
-    console.log('alto :'+parseInt(alto));   
+
     $('#calendar').fullCalendar('option', 'height', alto);
 
     var date = new Date();
@@ -162,11 +145,10 @@ function crearCalendario(){
    	$( ".fc-left" ).append('<h2 style="display: block; float: right">' + months[month] + '</h2><span style="display: block; float: right; clear: both; margin-top: -14px; position: relative;">'+year+'</span>');
 
    	var fechaSelect;
+   	var newEvent;
 
 	$(".fc-day").click(function(){
 		fechaSelect = $(this).context.dataset.date;
-		console.log("fechaSelect : ",fechaSelect);
-		console.log("fechaSelect : ",fechaSelect);
 		$("#agregar").show();
 	});
 
@@ -174,7 +156,20 @@ function crearCalendario(){
 		$("#agregar").hide();
 	});
 	$("#save").click(function(){
+		newEvent = {
+				title: $("#taskText textarea").val(),
+				start: fechaSelect,
+				constraint: $("#taskDescription textarea").val(), // defined below
+				color: '#257e4a',
+				author: $("#taskAuthor textarea").val(),
+				file: "urlFile"
+			};
+		Events.push(newEvent);
 		$("#agregar").hide();
+		$('#calendar').fullCalendar( 'removeEventSource', Events);
+		$('#calendar').fullCalendar( 'addEventSource', Events);
+		
+		console.log("Events = ", Events);
 	});
 }
 
