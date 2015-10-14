@@ -371,3 +371,11 @@ article{
 .fc-widget-header{
     border: medium hidden !important;
 }
+#timepicker1{
+   font-family: Tungsten-Medium;
+    height: 20px;
+    width: 84%;
+}
+.input-group-addon{
+
+}
